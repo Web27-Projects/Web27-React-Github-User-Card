@@ -13,20 +13,17 @@ class App extends React.Component{
 
   componentDidMount() {
     fetch('https://api.github.com/users/Mileywright')
-    .then(res => {
-      res.json()
-    })
+    .then(res => res.json())
     .then(res => {
       this.setState({ user: res })
+      console.log(res)
     })
     .catch(err => {
       console.log('error:', err)
     })
 
     fetch('https://api.github.com/users/Mileywright/followers')
-    .then(res => {
-      res.json()
-    })
+    .then(res => res.json())
     .then(res => {
       this.setState({ followers: res})
     })
@@ -39,7 +36,7 @@ class App extends React.Component{
     return (
       <div className="App">
         <header className="App-header">
-          <Cards />
+          <Cards user={this.state.user} followers={this.state.followers} />
         </header>
       </div>
     );
